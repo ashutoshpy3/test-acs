@@ -39,5 +39,4 @@ jobs:
         echo "Pushing image to ECR..."
         docker tag python-test:latest 184623968881.dkr.ecr.us-east-2.amazonaws.com/python-test:latest
         docker push 184623968881.dkr.ecr.us-east-2.amazonaws.com/python-test:latest
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::184623968881.dkr.ecr.us-east-2.amazonaws.com/python-test:latest"
