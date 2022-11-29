@@ -34,7 +34,10 @@ jobs:
         IMAGE_TAG: ${{ github.sha }}
       run: |
         # Build a docker container and push it to ECR 
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 184623968881.dkr.ecr.us-east-2.amazonaws.com
+        docker build -t python-test .
         echo "Pushing image to ECR..."
+        docker tag python-test:latest 184623968881.dkr.ecr.us-east-2.amazonaws.com/python-test:latest
+        docker push 184623968881.dkr.ecr.us-east-2.amazonaws.com/python-test:latest
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+        echo "::set-output name=image::184623968881.dkr.ecr.us-east-2.amazonaws.com/python-test:latest"
