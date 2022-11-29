@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
-#Check
+#Check EMALPHA
 @app.route('/', methods = ['GET', 'POST'])
 def home():
 	if(request.method == 'GET'):
